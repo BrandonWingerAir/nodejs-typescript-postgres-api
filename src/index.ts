@@ -4,6 +4,8 @@ import { Request, Response } from "express"
 import { AppDataSource } from "./data-source"
 import { Routes } from "./routes"
 
+import { port } from "./config";
+
 function handleError(err, req, res, next) {
     res.status(err.statusCode || 500).send({message: err.message});
 }
@@ -24,7 +26,7 @@ AppDataSource.initialize().then(async () => {
     });
 
     app.use(handleError);
-    app.listen(3000);
+    app.listen(port);
 
-    console.log("Express server has started on port 3000. Open http://localhost:3000/users to see results");
+    console.log(`Express server has started on port ${port}.`);
 }).catch(error => console.log(error));
