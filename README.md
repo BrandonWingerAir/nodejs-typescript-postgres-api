@@ -1,19 +1,17 @@
-# Awesome Project Build with TypeORM
+# NodeJS, TypeScript & Postgres REST API example built with TypeORM and Jest Testing
 
-Steps to run this project:
+## Steps to run this project:
 
 1. Run `npm i` command
 2. Setup database settings inside `data-source.ts` file
-3. Run `npm start` command
+3. Run `docker compose up -d` command
+4. Run `npm start` OR `npm run test` command
+
+## How to run tests:
+Ensure `npm start` is stopped and run `npm run test` command.
 
 ## Study Notes:
 
 createConnection deprecated, updated to AppDataSource.
 
-### Test - should not create a user without a first name (updated response):
-response.body.errors[0]).toEqual({ 
-    type: 'field', 
-    msg: 'Invalid value', 
-    path: 'firstName', 
-    location: 'body' 
-});
+response.body.errors[0] added **type** property and **param** updated to **path**.
