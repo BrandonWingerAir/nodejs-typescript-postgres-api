@@ -2,7 +2,8 @@ import * as express from "express"
 import * as bodyParser from "body-parser"
 import { Request, Response } from "express"
 import { AppDataSource } from "./data-source"
-import { Routes } from "./routes"
+import * as morgan from "morgan";
+import { Routes } from "./routes";
 
 import { port } from "./config";
 
@@ -11,7 +12,8 @@ function handleError(err, req, res, next) {
 }
 
 AppDataSource.initialize().then(async () => {
-    const app = express()
+    const app = express();
+    app.use(morgan('tiny')); // Production: 'combined'
     app.use(bodyParser.json());
 
     Routes.forEach(route => {
